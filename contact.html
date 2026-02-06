@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お申し込みフォーム</title>
+<style>
+  body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #fffff3;
+  }
+  h1 {
+    text-align: center;
+  }
+  form {
+    max-width: 500px;
+    margin: auto;
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  button {
+    margin: 20px auto 0;
+    display: block;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: orange;
+    border-radius: 10%;
+    border: 3px solid #252525;
+  }
+  html {
+    scroll-behavior: smooth; 
+  }
+</style>
+</head>
+<body>
+
+<h1>お申し込みフォーム</h1>
+
+<form id="applicationForm">
+  <label for="name">お名前</label>
+  <input type="text" id="name" name="name" placeholder="例：山田太郎">
+
+  <label for="phone">お電話番号</label>
+  <input type="tel" id="phone" name="phone" placeholder="例：090-1234-5678">
+
+  <label for="message">ご相談内容</label>
+  <textarea id="message" name="message" rows="5" placeholder="ご相談内容をご記入ください"></textarea>
+
+  <button type="submit">送信</button>
+</form>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const focusField = params.get('focus'); 
+  if(focusField) {
+    const input = document.getElementById(focusField);
+    if(input) {
+      input.scrollIntoView({ behavior: 'smooth' }); 
+      input.focus(); 
+    }
+  }
+});
+document.getElementById('applicationForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // フォームのデフォルト送信をキャンセル
+    window.location.href = 'thankyou.html'; // サンクスページに遷移
+});
+</script>
+
+</body>
+</html>
